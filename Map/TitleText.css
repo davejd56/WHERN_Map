@@ -1,0 +1,38 @@
+*{
+	padding:0;
+	margin:0;
+}
+
+#mapid {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  }
+  html,body{margin: 0; padding: 0}
+
+#mapid:before {
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+h1::before{
+  content: attr(mytitle);
+  color: rgb(0, 255, 128);
+  text-shadow: 1pt 1pt 2px rgb(0,0,0);
+  position: absolute;
+  left: 100px;
+  top: 15px;
+  z-index: 999;
+}
+.leaflet-panel-layers-overlays .leaflet-panel-layers-item {
+	margin-bottom: 1px;
+	color: blue;
+	font-style: italic;
+	padding: .1px;
+	letter-spacing: -.05rem;
+}
+

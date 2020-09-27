@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Whitehorse Easy Ride Network Test Map</title>
+
+	<meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-panel-layers@1.2.6/dist/leaflet-panel-layers.min.css" integrity="sha384-/zbBBfnTFUwoFXwCqYn9ISbVN/pqhRtD0tIfWSvdbKBGgehPZrlwqD+/stdPpR7q" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen@1.0.2/dist/leaflet.fullscreen.css" integrity="sha384-t17w2haSDwLp3KSAOHF7+VI9q2maRMLDhnIyU/JasjeWyxcN3YOcrD7T95CiJSWE" crossorigin="anonymous">    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.defaultextent@0.0.2/dist/leaflet.defaultextent.css" integrity="sha384-3+DeBhEB9zDAvfhi4K5XCshWbijhmEkLnR/uovB/WYXdHNPD7zsKPEq2JPFCQQRt" crossorigin="anonymous">
+    <link rel="stylesheet" href="TitleText.css" integrity="sha384-vn/mDLEhUqMXEvrwH9nYsKvRVYb52Iqsav6Qwa8fxtTjKONvrtggg1ScUZuwpoaJ" crossorigin="anonymous">
+
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet-panel-layers@1.2.6/dist/leaflet-panel-layers.min.js" integrity="sha384-E6LANNWnqQrX1QbbEHdsfuOpnPmZZEFZ1UFPZN0n4YqNlC0LS+5bTGrPEilsoA3t" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js" integrity="sha384-iSbZ0u+krSsBvNi0nBcb2hAdkZkoY5HVYY/bPow5MvY9yWGAmXSpZJ3rt2Run9rK" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet-fullscreen@1.0.2/dist/Leaflet.fullscreen.min.js" integrity="sha384-FpPcEXyP4TQdyqUB2eInJM0/JklDW4T4qNuvDQdaNmkQ6KjY+KOyoUZmscxOIfZ5" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet.defaultextent@0.0.2/dist/leaflet.defaultextent.js" integrity="sha384-yiscI0r5h5iPWa9xAXxldSjNGtd+kZrLASu7TTy/yn3r/ZR9Pc+M6Ypf5qbcCOi7" crossorigin="anonymous"></script>
+
+	<style type="text/css">
+	/* html, body, #mapid { */
+        #mapid {
+		width: 100vw;
+		height: 100vh;
+        margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="mapid">
+    <h1 mytitle = "Whitehorse Easy Ride Network Test Map"></h1>
+</div>
+
+<script language="JavaScript" type="text/javascript">
+
+        /* set up array holding details of the ERN KML tracks */
+	var kml_s = [
+		['KML Files/ER_NS_1_-_heading_sth.kml', '#e60000', 'Day 1 - Perth to Dawseville 95Km'], 
+		['KML Files/ER_EW_1_(from_Strabane_Ave_to_Koonung_Trail_-_nr_Springvale_Rd)_-_heading_East.kml', '#e67500', 'Day 2 - Dawseville to Margaret River 185Km'],
+		];
+
+    /* 	Set up global variables */
+    var lat_nE_1
+	var lng_nE_1
+	var lat_sW_1
+	var lng_sW_1
+	var bnds_1
+    var bnds_2
+	var kml = [];
+    var Att_Com = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors | ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a> | ' +
+        'Side Panel &copy; <a href="https://github.com/stefanocudini/leaflet-panel-layers/blob/master/license.txt">2015-2017 Stefano Cudini</a> | '+
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+        
+    /* Check for mobile safari browser */
+    var browser;
+    var agent = navigator.userAgent;
+        if(agent.indexOf("Mozilla/") != -1 && agent.indexOf("like Mac OS ") != -1 && agent.indexOf("like Gecko") != -1 && agent.indexOf("Mobile") != -1 && agent.indexOf("Safari") != -1){
+        browser = false;
+        }
+        else {browser = true;};
+
+    /* Set up initial map layer */
+    
+    // Fullscreen & restore default zoom
+    var mymap = L.map('mapid', {
+        defaultExtentControl: true, 
+        fullscreenControl: browser
+    //    fullscreenControl:{pseudoFullscreen: !browser}
+
+    /*  Usage     
+    fullscreenControl: true,
+    //OR
+    fullscreenControl: {
+        pseudoFullscreen: true // if true, fullscreen to page width and height
+    } */
+
+    });
+
+    // var mymap = L.map('mapid').setView([-34.034453, 130.913086], 6),
+	mboxLayer = new 
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2ZWpkNDMxNzgiLCJhIjoiY2puZ3ByeTlhMDFicDNrcG1yMjlkcmxjciJ9.4_vjg7yVBgk-CZtkol42Ig', {
+		maxZoom: 23,
+		tileSize: 512,
+		zoomOffset: -1,
+        attribution:
+        Att_Com,
+		id: 'mapbox/streets-v11'
+        });
+        mymap.addLayer(mboxLayer); 
+	
+    //Load ERN tracks and set map bounds
+    let filesLoaded = 0;
+    
+    for (var i = 0; i < kml_s.length; i++) {
+        let myfile = kml_s[i][0];
+        let mycolor = kml_s[i][1];
+
+        kml[i] = new omnivore.kml(myfile)
+            .bindPopup(kml_s[i][2])
+            .bindTooltip(kml_s[i][2])
+            .on('ready', function(e) {
+                //console.log(i, mycolor)
+                this.setStyle({
+                    color: mycolor,
+                    opacity: .8,
+                    weight: 4,
+                    lineCap: 'round'
+                })
+                bnds_1 = (e.target.getBounds())
+                if (typeof lat_nE_1 === 'undefined' || bnds_1._northEast.lat > lat_nE_1){lat_nE_1 = bnds_1._northEast.lat}
+                if (typeof lng_nE_1 === 'undefined' || bnds_1._northEast.lng > lng_nE_1){lng_nE_1 = bnds_1._northEast.lng}
+                if (typeof lat_sW_1 === 'undefined' || bnds_1._southWest.lat < lat_sW_1){lat_sW_1 = bnds_1._southWest.lat}
+                if (typeof lng_sW_1 === 'undefined' || bnds_1._southWest.lng < lng_sW_1){lng_sW_1 = bnds_1._southWest.lng}
+
+                filesLoaded++;
+
+                if (filesLoaded === kml_s.length) {
+                    bnds_1._northEast.lat = lat_nE_1
+                    bnds_1._northEast.lng = lng_nE_1 +9
+                    bnds_1._southWest.lat = lat_sW_1
+                    bnds_1._southWest.lng = lng_sW_1
+                    mymap.fitBounds(bnds_1)
+                }
+            });
+
+        mymap.addLayer(kml[i]);
+        kml[i].on('click', onTrackclick);
+    }
+
+    /* Set up click on track & zoom map to Track */
+    function onTrackclick(e){
+        bnds_2 = e.target
+        mymap.fitBounds(bnds_2.getBounds());
+    }
+                                                       
+    /* Sets map layers for side panel */
+    var baseLayers = [
+        {		
+            group: "Maps",
+            collapsed: true,
+            layers: [
+                {
+                    name: "MapBox Streets",
+                    layer: mboxLayer
+                },
+                {
+                    name: "Mapbox Outdoors",
+                    layer: L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2ZWpkNDMxNzgiLCJhIjoiY2puZ3ByeTlhMDFicDNrcG1yMjlkcmxjciJ9.4_vjg7yVBgk-CZtkol42Ig', { 
+                    maxZoom: 23,
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    attribution:
+                    Att_Com,
+                    id: 'mapbox/outdoors-v11' })
+                },
+                {
+                    name: "Mapbox Light",
+                    layer: L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2ZWpkNDMxNzgiLCJhIjoiY2puZ3ByeTlhMDFicDNrcG1yMjlkcmxjciJ9.4_vjg7yVBgk-CZtkol42Ig', { 
+                    maxZoom: 23,
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    attribution:
+                    Att_Com,
+                    id: 'mapbox/light-v10' })
+                },
+                {
+                    name: "Open Street Map",
+                    layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+                    maxZoom: 19,
+                    attribution:
+                    Att_Com,
+                    })
+                },
+                {
+                    name: "Open Cycle Map",
+                    layer: L.tileLayer('https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=06003a6a184c48be994d17d414a7746e', { 
+                    maxZoom: 23,
+                    attribution:
+                    Att_Com,
+                    })
+                }
+            ]
+        }
+    ];
+	
+    /* Sets Track layers in side panel */
+    var overLayers = [
+        {
+            group: "ERN Routes",
+            //collapsed: true,
+            layers: [
+        
+                {
+                    name: kml_s[0][2],
+                    layer: kml[0]
+                },
+                {
+                    name: kml_s[1][2],
+                    layer: kml[1]
+                }
+            ]
+        }
+    ];
+
+    /* Sets control for side panel */
+    var panelLayers = new L.Control.PanelLayers(baseLayers, overLayers, {
+            compact: true,
+            //collapsed: true,
+            collapsibleGroups: true,
+            //title: "Map Options"
+        });
+
+    /* Adds side panel to map */
+    mymap.addControl(panelLayers);
+
+</script>
+
+</body>
+</html>
