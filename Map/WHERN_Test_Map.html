@@ -40,8 +40,10 @@
 
         /* set up array holding details of the ERN KML tracks */
 	var kml_s = [
-		['KML Files/ER_NS_1_-_heading_sth.kml', '#e60000', 'Day 1 - Perth to Dawseville 95Km'], 
-		['KML Files/ER_EW_1_(from_Strabane_Ave_to_Koonung_Trail_-_nr_Springvale_Rd)_-_heading_East.kml', '#e67500', 'Day 2 - Dawseville to Margaret River 185Km'],
+		['KML Files/ER_NS_1_-_heading_sth.kml', '#e60000', 'ER NS 1 - heading sth'],
+        ['KML Files/ER_NS1_heading_nth.kml', '#0000e6', 'ER NS1 heading nth'],
+		['KML Files/ER_EW_1_(from_Strabane_Ave_to_Koonung_Trail_-_nr_Springvale_Rd)_-_heading_East.kml', '#7500e6', 'ER EW 1 (from Strabane Ave to Koonung Trail - nr Springvale Rd) - heading East'],
+        ['KML Files/ER_EW_1_from_Koonung_Trail_(nr_Springvale)_to_Strabane_Heading_West.kml', '#f700ff', 'ER EW 1 from Koonung Trail (nr Springvale) to Strabane Heading West']
 		];
 
     /* 	Set up global variables */
@@ -102,7 +104,7 @@
         let mycolor = kml_s[i][1];
 
         kml[i] = new omnivore.kml(myfile)
-            .bindPopup(kml_s[i][2])
+            // .bindPopup(kml_s[i][2])
             .bindTooltip(kml_s[i][2])
             .on('ready', function(e) {
                 //console.log(i, mycolor)
@@ -122,11 +124,12 @@
 
                 if (filesLoaded === kml_s.length) {
                     bnds_1._northEast.lat = lat_nE_1
-                    bnds_1._northEast.lng = lng_nE_1 +9
+                    bnds_1._northEast.lng = lng_nE_1
                     bnds_1._southWest.lat = lat_sW_1
                     bnds_1._southWest.lng = lng_sW_1
                     mymap.fitBounds(bnds_1)
                 }
+
             });
 
         mymap.addLayer(kml[i]);
@@ -135,8 +138,29 @@
 
     /* Set up click on track & zoom map to Track */
     function onTrackclick(e){
-        bnds_2 = e.target
-        mymap.fitBounds(bnds_2.getBounds());
+        // bnds_2 = e.target
+        // mymap.fitBounds(bnds_2.getBounds());
+        let w_url = '';
+        let trk_name = e.layer.feature.properties.name;
+        // if (trk_name === 'ER NS 1 - heading sth') {w_url = 'https://ridewithgps.com/routes/32385372'};
+        // if (trk_name === 'ER EW 1 (from Strabane Ave to Koonung Trail - nr Springvale Rd) - heading East') {w_url = 'https://ridewithgps.com/routes/32386239'};
+        switch(trk_name){
+            case 'ER NS 1 - heading sth':
+            w_url = 'https://ridewithgps.com/routes/32385372'
+            break; 
+            case 'ER NS1 heading nth':
+            w_url = 'https://ridewithgps.com/routes/32645577'
+            break;
+            case 'ER EW 1 (from Strabane Ave to Koonung Trail - nr Springvale Rd) - heading East':
+            w_url = 'https://ridewithgps.com/routes/32386239'
+            break;
+            case 'ER EW 1 from Koonung Trail (nr Springvale) to Strabane Heading West':
+            w_url = 'https://ridewithgps.com/routes/32725591'
+            break;
+            default:
+            w_url = '';
+        }
+        if (w_url != '') {window.open(w_url)}
     }
                                                        
     /* Sets map layers for side panel */
@@ -203,6 +227,14 @@
                 {
                     name: kml_s[1][2],
                     layer: kml[1]
+                },
+                {
+                    name: kml_s[2][2],
+                    layer: kml[2]
+                },
+                {
+                    name: kml_s[3][2],
+                    layer: kml[3]
                 }
             ]
         }
