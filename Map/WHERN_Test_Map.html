@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-panel-layers@1.2.6/dist/leaflet-panel-layers.min.css" integrity="sha384-/zbBBfnTFUwoFXwCqYn9ISbVN/pqhRtD0tIfWSvdbKBGgehPZrlwqD+/stdPpR7q" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen@1.0.2/dist/leaflet.fullscreen.css" integrity="sha384-t17w2haSDwLp3KSAOHF7+VI9q2maRMLDhnIyU/JasjeWyxcN3YOcrD7T95CiJSWE" crossorigin="anonymous">    
     <link rel="stylesheet" href="https://unpkg.com/leaflet.defaultextent@0.0.2/dist/leaflet.defaultextent.css" integrity="sha384-3+DeBhEB9zDAvfhi4K5XCshWbijhmEkLnR/uovB/WYXdHNPD7zsKPEq2JPFCQQRt" crossorigin="anonymous">
-    <link rel="stylesheet" href="TitleText.css" integrity="sha384-JtlL3eWpBrs6nGDt/xEngSZkEREb9Ha9qREKJMY35lf/NPUPk5KEI22e8ZgJSO4a" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="TitleText.css" integrity="sha384-vn/mDLEhUqMXEvrwH9nYsKvRVYb52Iqsav6Qwa8fxtTjKONvrtggg1ScUZuwpoaJ" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="TitleText.css" integrity="sha384-JtlL3eWpBrs6nGDt/xEngSZkEREb9Ha9qREKJMY35lf/NPUPk5KEI22e8ZgJSO4a" crossorigin="anonymous"> --> <!-- github -->
+    <!-- <link rel="stylesheet" href="TitleText.css" integrity="sha384-vn/mDLEhUqMXEvrwH9nYsKvRVYb52Iqsav6Qwa8fxtTjKONvrtggg1ScUZuwpoaJ" crossorigin="anonymous"> --> <!-- local -->
+    <link rel="stylesheet" href="TitleText.css">
 
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet-panel-layers@1.2.6/dist/leaflet-panel-layers.min.js" integrity="sha384-E6LANNWnqQrX1QbbEHdsfuOpnPmZZEFZ1UFPZN0n4YqNlC0LS+5bTGrPEilsoA3t" crossorigin="anonymous"></script>
@@ -42,9 +43,41 @@
         /* set up array holding details of the ERN KML tracks */
 	var kml_s = [
 		['KML Files/ER_NS_1_-_heading_sth.kml', '#e60000', 'ER NS 1 - heading sth'],
+        ['KML Files/ER_NS2_Koonung_Trail_to_Highbury_Rd_-_Heading_south.kml', '#e60000', 'ER NS2 Koonung Trail to Highbury Rd - Heading south'],
+        ['KML Files/ER_NS_3_Koonung_Trail_to_Highbury_via_Dorking_Rd_-_heading_South.kml', '#e60000', 'ER NS 3 Koonung Trail to Highbury via Dorking Rd - heading South'],
+        ['KML Files/ER_NS_4_Koonung_Trail_to_Bettina_St_(ER_EW_7)_-_heading_south.kml', '#e60000', 'ER NS 4 Koonung Trail to Bettina St (ER EW 7) - heading south'],
+        ['KML Files/ER_NS_5_Blackburn_to_Blackburn_Rd_-_heading_south.kml', '#e60000', 'ER NS 5 Blackburn to Blackburn Rd - heading south'],
+        ['KML Files/ER_NS_6_Koonung_Trail_via_Surrey_rd_and_Blackburn_Rd_to_Highbury_-_heading_south.kml', '#e60000', 'ER NS 6 Koonung Trail via Surrey rd and Blackburn Rd to Highbury - heading south'],
+        ['KML Files/ER_NS_7_Koonung_Trail_to_Highbury_via_Nunawading___Syndal_Pipe_Track_-_heading_south.kml', '#e60000', 'ER NS 7 Koonung Trail to Highbury via Nunawading & Syndal Pipe Track - heading south'],
+        ['KML Files/ER_NS_8_from_Mitcham_Rd_to_Highbury_-_heading_south.kml', '#e60000', 'ER NS 8 from Mitcham Rd to Highbury - heading south'],
+        ['KML Files/ER_NS9_from_Mitcham_Rd_to_Highbury_Rd_-_heading_South.kml', '#e60000', 'ER NS9 from Mitcham Rd to Highbury Rd - heading South'],
+        ['KML Files/ER_NS_10_Mullum_tunnel_to_Whitehorse_Recycling_Waste_-_heading_south.kml', '#e60000', 'ER NS 10 Mullum tunnel to Whitehorse Recycling/Waste - heading south'],
         ['KML Files/ER_NS1_heading_nth.kml', '#0000e6', 'ER NS1 heading nth'],
-		['KML Files/ER_EW_1_(from_Strabane_Ave_to_Koonung_Trail_-_nr_Springvale_Rd)_-_heading_East.kml', '#7500e6', 'ER EW 1 (from Strabane Ave to Koonung Trail - nr Springvale Rd) - heading East'],
-        ['KML Files/ER_EW_1_from_Koonung_Trail_(nr_Springvale)_to_Strabane_Heading_West.kml', '#f700ff', 'ER EW 1 from Koonung Trail (nr Springvale) to Strabane Heading West']
+        ['KML Files/ER_NS2_Koonung_Trail_to_Highbury_Rd_-_Heading_north.kml', '#0000e6', 'ER NS2 Koonung Trail to Highbury Rd - Heading north'],
+        ['KML Files/ER_NS_3_Koonung_Trail_to_Highbury_via_Dorking_Rd_-_heading_North.kml', '#0000e6', 'ER NS 3 Koonung Trail to Highbury via Dorking Rd - heading North'],
+        ['KML Files/ER_NS4_Bettina_St_(EW7)_to_Koonung_Trail_(heading_north).kml', '#0000e6', 'ER NS4 Bettina St (EW7) to Koonung Trail (heading north)'],
+        ['KML Files/ER_NS_5_Heading_North.kml', '#0000e6', 'ER NS 5 Heading North'],
+        ['KML Files/ER_NS6_-_heading_north.kml', '#0000e6', 'ER NS6 - heading north'],
+        ['KML Files/ER_NS_7_heading_north.kml', '#0000e6', 'ER NS 7 heading north'],
+        ['KML Files/ER_NS_8_Heading_North.kml', '#0000e6', 'ER NS 8 Heading North'],
+        ['KML Files/ER_NS_9_heading_North.kml', '#0000e6', 'ER NS 9 heading North'],
+        ['KML Files/ER_NS_10_Whitehorse_Waste___Recycling__to_Mullum_Tunnel_Heading_North.kml', '#0000e6', 'ER NS 10 Whitehorse Waste & Recycling to Mullum Tunnel Heading North'],
+		['KML Files/ER_EW_1_(from_Strabane_Ave_to_Koonung_Trail_-_nr_Springvale_Rd)_-_heading_East.kml', '#931fff', 'ER EW 1 (from Strabane Ave to Koonung Trail - nr Springvale Rd) - heading East'],
+        ['KML Files/ER_EW_2A_(from_Koonung_Trail_Bushy_Ck_trail_to_Burnett_St_(Mitcham)_-_heading_East.kml', '#931fff', 'ER EW 2A (from Koonung Trail, Bushy Ck trail to Burnett St (Mitcham) - heading East'],
+        ['KML Files/ER_EW_2_from_Koonung_Trail_via_Bushy_Ck_trail_and_Springfield_Rd_to_Mitcham_Rd_-_heading_East.kml', '#931fff', 'ER EW 2 from Koonung Trail via Bushy Ck trail and Springfield Rd to Mitcham Rd - heading East'],
+        ['KML Files/ER_EW_3__Union_Rd_(Kerry_Pde)_to_Burnett_St_-_heading_East.kml', '#931fff', 'ER EW 3 Union Rd (KerryPde) to Burnett St - heading East'],
+        ['KML Files/ER_EW_4_Mont_Albert_to_Heatherdale_Rd_(via_Albion_Rd_Orient_Rd)_-_heading_East.kml', '#931fff', 'ER EW 4 Mont Albert to Heatherdale Rd (via Albion Rd, Orient Rd) - heading East'],
+        ['KML Files/ER_EW_5_via_Bindy_St_Jacana_Rd_Parkmore_Rd_-_heading_East.kml', '#931fff', 'ER EW 5 via Bindy St, Jacana Rd, Parkmore Rd - heading East'],
+        ['KML Files/ER_EW_6___6E_Warrigal_Rd_(Banksia_St)_to_Dandenong_Creek_Trail_-_heading_East.kml', '#931fff', 'ER EW 6 & 6E Warrigal Rd (Banksia St) to Dandenong Creek Trail - heading East'],
+        ['KML Files/ER_EW_7_Burwood_to_Whitehorse_Waste___Recycling_Centre_-_heading_East.kml', '#931fff', 'ER EW 7 Burwood to Whitehorse Waste & Recycling Centre - heading East'],
+        ['KML Files/ER_EW_1_from_Koonung_Trail_(nr_Springvale)_to_Strabane_Heading_West.kml', '#f700ff', 'ER EW 1 from Koonung Trail (nr Springvale) to Strabane Heading West'],
+        ['KML Files/ER_EW_2A_From_Burnett_St_to_Koonung_Trail_(heading_west).kml', '#f700ff', 'ER EW 2A From Burnett St to Koonung Trail (heading west)'],
+        ['KML Files/ER_EW_2_from_Mitcham_via_Springfield_rd_Bushy_Creek_to_Koonung_Trail_heading_West.kml', '#f700ff', 'ER EW 2 from Mitcham via Springfield rd Bushy Creek to Koonung Trail heading West'],
+        ['KML Files/ER_EW_3__Union_Rd_(Kerry_Pde)_to_Burnett_St_-_heading_West.kml', '#f700ff', 'ER EW 3 Union Rd (Kerry Pde) to Burnett St - heading West'],
+        ['KML Files/ER_EW_4_Heatherdale_Rd_to_Mont_Albert_Heading_west.kml', '#f700ff', 'ER EW 4 Heatherdale Rd to Mont Albert Heading west'],
+        ['KML Files/ER_EW_5_heading_west.kml', '#f700ff', 'ER EW 5 heading west'],
+        ['KML Files/ER_EW_6____6A_heading_west.kml', '#f700ff', 'ER EW 6 & 6A heading west'],
+        ['KML Files/ER_EW_7_heading_west.kml', '#f700ff', 'ER EW 7 heading west']
 		];
 
     /* 	Set up global variables */
@@ -124,11 +157,12 @@
                 filesLoaded++;
 
                 if (filesLoaded === kml_s.length) {
-                    bnds_1._northEast.lat = lat_nE_1
-                    bnds_1._northEast.lng = lng_nE_1
-                    bnds_1._southWest.lat = lat_sW_1
-                    bnds_1._southWest.lng = lng_sW_1
+                    bnds_1._northEast.lat = lat_nE_1 //-.001
+                    bnds_1._northEast.lng = lng_nE_1 //-.001
+                    bnds_1._southWest.lat = lat_sW_1 //-.001
+                    bnds_1._southWest.lng = lng_sW_1 //-.001
                     mymap.fitBounds(bnds_1)
+                    mymap.setZoom(mymap.getZoom() + 1);
                 }
 
             });
@@ -143,24 +177,125 @@
         // mymap.fitBounds(bnds_2.getBounds());
         let w_url = '';
         let trk_name = e.layer.feature.properties.name;
+        // trk_name = trk_name.substring(0, 10);
         // if (trk_name === 'ER NS 1 - heading sth') {w_url = 'https://ridewithgps.com/routes/32385372'};
         // if (trk_name === 'ER EW 1 (from Strabane Ave to Koonung Trail - nr Springvale Rd) - heading East') {w_url = 'https://ridewithgps.com/routes/32386239'};
         switch(trk_name){
             case 'ER NS 1 - heading sth':
-            w_url = 'https://ridewithgps.com/routes/32385372'
-            break; 
+            w_url = 'https://ridewithgps.com/routes/32385372';
+            break;
+            case 'ER NS2 Koonung Trail to Highbury Rd - Heading south':
+            w_url = 'https://ridewithgps.com/routes/32414444';
+            break;
+            case 'ER NS 3 Koonung Trail to Highbury via Dorking Rd - heading South':
+            w_url = 'https://ridewithgps.com/routes/32414528';
+            break;
+            case 'ER NS 4 Koonung Trail to Bettina St (ER EW 7) - heading south':
+            w_url = 'https://ridewithgps.com/routes/32489622';
+            break;
+            case 'ER NS 5 Blackburn to Blackburn Rd - heading south':
+            w_url = 'https://ridewithgps.com/routes/32489657';
+            break;
+            case 'ER NS 6 Koonung Trail via Surrey rd and Blackburn Rd to Highbury - heading south':
+            w_url = 'https://ridewithgps.com/routes/32414619';
+            break;
+            case 'ER NS 7 Koonung Trail to Highbury via Nunawading & Syndal Pipe Track - heading south':
+            w_url = 'https://ridewithgps.com/routes/32414792';
+            break;
+            case 'ER NS 8 from Mitcham Rd to Highbury - heading south':
+            w_url = 'https://ridewithgps.com/routes/32484819';
+            break;
+            case 'ER NS9 from Mitcham Rd to Highbury Rd - heading South':
+            w_url = 'https://ridewithgps.com/routes/32484961';
+            break;
+            case 'ER NS 10 Mullum tunnel to Whitehorse Recycling/Waste - heading south':
+            w_url= 'https://ridewithgps.com/routes/32414920';
+            break;
             case 'ER NS1 heading nth':
-            w_url = 'https://ridewithgps.com/routes/32645577'
+            w_url = 'https://ridewithgps.com/routes/32645577';
+            break;
+            case 'ER NS2 Koonung Trail to Highbury Rd - Heading north':
+            w_url = 'https://ridewithgps.com/routes/32725369';
+            break;
+            case 'ER NS 3 Koonung Trail to Highbury via Dorking Rd - heading North':
+            w_url = 'https://ridewithgps.com/routes/32725411';
+            break;
+            case 'ER NS4 Bettina St (EW7) to Koonung Trail (heading north)':
+            w_url = 'https://ridewithgps.com/routes/32550986';
+            break;
+            case 'ER NS 5 Heading North':
+            w_url = 'https://ridewithgps.com/routes/32725443';
+            break;
+            case 'ER NS6 - heading north':
+            w_url = 'https://ridewithgps.com/routes/32725470';
+            break;
+            case 'ER NS 7 heading north':
+            w_url = 'https://ridewithgps.com/routes/32725496';
+            break;
+            case 'ER NS 8 Heading North':
+            w_url = 'https://ridewithgps.com/routes/32725535';
+            break;
+            case 'ER NS 9 heading North':
+            w_url = 'https://ridewithgps.com/routes/32725555';
+            break;
+            case 'ER NS 10 Whitehorse Waste & Recycling to Mullum Tunnel Heading North':
+            w_url = 'https://ridewithgps.com/routes/32725573';
             break;
             case 'ER EW 1 (from Strabane Ave to Koonung Trail - nr Springvale Rd) - heading East':
-            w_url = 'https://ridewithgps.com/routes/32386239'
+            w_url = 'https://ridewithgps.com/routes/32386239';
+            break;
+            case 'ER EW 2A (from Koonung Trail, Bushy Ck trail to Burnett St (Mitcham) - heading East':
+            w_url = 'https://ridewithgps.com/routes/32385978';
+            break;
+            case 'ER EW 2 from Koonung Trail via Bushy Ck trail and Springfield Rd to Mitcham Rd - heading East':
+            w_url = 'https://ridewithgps.com/routes/32386014';
+            break;
+            // case 'ER EW 3 Union Rd (KerryPde) to Burnett St - heading East':
+            // w_url = 'https://ridewithgps.com/routes/32557104';
+            // break;
+            case 'ER EW 4 Mont Albert to Heatherdale Rd (via Albion Rd, Orient Rd) - heading East':
+            w_url = 'https://ridewithgps.com/routes/32386497';
+            break;
+            case 'ER EW 5 via Bindy St, Jacana Rd, Parkmore Rd - heading East':
+            w_url = 'https://ridewithgps.com/routes/32384889';
+            break;
+            case 'ER EW 6 & 6E Warrigal Rd (Banksia St) to Dandenong Creek Trail - heading East':
+            w_url = 'https://ridewithgps.com/routes/32490913';
+            break;
+            case 'ER EW 7 Burwood to Whitehorse Waste & Recycling Centre - heading East':
+            w_url = 'https://ridewithgps.com/routes/32391856';
             break;
             case 'ER EW 1 from Koonung Trail (nr Springvale) to Strabane Heading West':
-            w_url = 'https://ridewithgps.com/routes/32725591'
+            w_url = 'https://ridewithgps.com/routes/32725591';
+            break;
+            case 'ER EW 2A From Burnett St to Koonung Trail (heading west)':
+            w_url = 'https://ridewithgps.com/routes/32725807';
+            break;
+            case 'ER EW 2 from Mitcham via Springfield rd Bushy Creek to Koonung Trail heading West':
+            w_url = 'https://ridewithgps.com/routes/32725848';
+            break;
+            // case 'ER EW 3 Union Rd (Kerry Pde) to Burnett St - heading West':
+            // w_url = 'https://ridewithgps.com/routes/32725228';
+            // break;
+            case 'ER EW 4 Heatherdale Rd to Mont Albert Heading west':
+            w_url = 'https://ridewithgps.com/routes/32725658';
+            break;
+            case 'ER EW 5 heading west':
+            w_url = 'https://ridewithgps.com/routes/32725679';
+            break;
+            // case 'ER EW 6 & 6A heading west':
+            // w_url = 'https://ridewithgps.com/routes/32727627';
+            // break;
+            case 'ER EW 7 heading west':
+            w_url = 'https://ridewithgps.com/routes/32727696';
             break;
             default:
             w_url = '';
         }
+        trk_name = trk_name.replace(/\s+/g, "");
+        if (trk_name === 'EREW3UnionRd(KerryPde)toBurnettSt-headingEast') {w_url = 'https://ridewithgps.com/routes/32557104'};
+        if (trk_name === 'EREW3UnionRd(KerryPde)toBurnettSt-headingWest') {w_url = 'https://ridewithgps.com/routes/32725228'};
+        if (trk_name === 'EREW6&6Aheadingwest') {w_url = 'https://ridewithgps.com/routes/32727627';}
         if (w_url != '') {window.open(w_url)}
     }
                                                        
@@ -217,10 +352,8 @@
     /* Sets Track layers in side panel */
     var overLayers = [
         {
-            group: "ERN Routes",
-            //collapsed: true,
+            group: "NS routes Heading South",
             layers: [
-        
                 {
                     name: kml_s[0][2],
                     layer: kml[0]
@@ -236,6 +369,152 @@
                 {
                     name: kml_s[3][2],
                     layer: kml[3]
+                },
+                {
+                    name: kml_s[4][2],
+                    layer: kml[4]
+                },
+                {
+                    name: kml_s[5][2],
+                    layer: kml[5]
+                },
+                {
+                    name: kml_s[6][2],
+                    layer: kml[6]
+                },
+                {
+                    name: kml_s[7][2],
+                    layer: kml[7]
+                },
+                {
+                    name: kml_s[8][2],
+                    layer: kml[8]
+                },
+                {
+                    name: kml_s[9][2],
+                    layer: kml[9]
+                }
+            ]
+        },
+        {
+            group: "NS routes Heading North",
+            collapsed: true,
+            layers: [
+                {
+                    name: kml_s[10][2],
+                    layer: kml[10]
+                },
+                {
+                    name: kml_s[11][2],
+                    layer: kml[11]
+                },
+                {
+                    name: kml_s[12][2],
+                    layer: kml[12]
+                },
+                {
+                    name: kml_s[13][2],
+                    layer: kml[13]
+                },
+                {
+                    name: kml_s[14][2],
+                    layer: kml[14]
+                },
+                {
+                    name: kml_s[15][2],
+                    layer: kml[15]
+                },
+                {
+                    name: kml_s[16][2],
+                    layer: kml[16]
+                },
+                {
+                    name: kml_s[17][2],
+                    layer: kml[17]
+                },
+                {
+                    name: kml_s[18][2],
+                    layer: kml[18]
+                },
+                {
+                    name: kml_s[19][2],
+                    layer: kml[19]
+                }
+            ]
+        },
+        {
+            group: "EW routes Heading East",
+            collapsed: true,
+            layers: [
+                {
+                    name: kml_s[20][2],
+                    layer: kml[20]
+                },
+                {
+                    name: kml_s[21][2],
+                    layer: kml[21]
+                },
+                {
+                    name: kml_s[22][2],
+                    layer: kml[22]
+                },
+                {
+                    name: kml_s[23][2],
+                    layer: kml[23]
+                },
+                {
+                    name: kml_s[24][2],
+                    layer: kml[24]
+                },
+                {
+                    name: kml_s[25][2],
+                    layer: kml[25]
+                },
+                {
+                    name: kml_s[26][2],
+                    layer: kml[26]
+                },
+                {
+                    name: kml_s[27][2],
+                    layer: kml[27]
+                }
+            ]
+        },
+        {
+            group: "EW routes Heading West",
+            collapsed: true,
+            layers: [
+                {
+                    name: kml_s[28][2],
+                    layer: kml[28]
+                },
+                {
+                    name: kml_s[29][2],
+                    layer: kml[29]
+                },
+                {
+                    name: kml_s[30][2],
+                    layer: kml[30]
+                },
+                {
+                    name: kml_s[31][2],
+                    layer: kml[31]
+                },
+                {
+                    name: kml_s[32][2],
+                    layer: kml[32]
+                },
+                {
+                    name: kml_s[33][2],
+                    layer: kml[33]
+                },
+                {
+                    name: kml_s[34][2],
+                    layer: kml[34]
+                },
+                {
+                    name: kml_s[35][2],
+                    layer: kml[35]
                 }
             ]
         }
