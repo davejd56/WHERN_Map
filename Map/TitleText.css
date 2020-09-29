@@ -30,12 +30,13 @@ h1::before{
 }
 .leaflet-panel-layers-overlays .leaflet-panel-layers-item {
 	margin-bottom: 1px;
-	/* color: blue; */
+	color: blue;
 	font-style: italic;
 	padding: .1px;
 	letter-spacing: -.05rem;
 }
-.leaflet-panel-layers-title [id="29"] + span, .leaflet-panel-layers-title [id="30"] + span, .leaflet-panel-layers-title [id="31"] + span, .leaflet-panel-layers-title [id="32"] + span, .leaflet-panel-layers-title [id="33"] + span, .leaflet-panel-layers-title [id="34"] + span, .leaflet-panel-layers-title [id="35"] + span, .leaflet-panel-layers-title [id="36"] + span, .leaflet-panel-layers-title [id="37"] + span, .leaflet-panel-layers-title [id="38"] + span {
+
+/* .leaflet-panel-layers-title [id="29"] + span, .leaflet-panel-layers-title [id="30"] + span, .leaflet-panel-layers-title [id="31"] + span, .leaflet-panel-layers-title [id="32"] + span, .leaflet-panel-layers-title [id="33"] + span, .leaflet-panel-layers-title [id="34"] + span, .leaflet-panel-layers-title [id="35"] + span, .leaflet-panel-layers-title [id="36"] + span, .leaflet-panel-layers-title [id="37"] + span, .leaflet-panel-layers-title [id="38"] + span {
   color: red;
 }
 .leaflet-panel-layers-title [id="39"] + span, .leaflet-panel-layers-title [id="40"] + span, .leaflet-panel-layers-title [id="41"] + span, .leaflet-panel-layers-title [id="42"] + span, .leaflet-panel-layers-title [id="43"] + span, .leaflet-panel-layers-title [id="44"] + span, .leaflet-panel-layers-title [id="45"] + span, .leaflet-panel-layers-title [id="46"] + span, .leaflet-panel-layers-title [id="47"] + span, .leaflet-panel-layers-title [id="48"] + span {
@@ -47,4 +48,4 @@ h1::before{
 .leaflet-panel-layers-title [id="57"] + span, .leaflet-panel-layers-title [id="58"] + span, .leaflet-panel-layers-title [id="59"] + span, .leaflet-panel-layers-title [id="60"] + span, .leaflet-panel-layers-title [id="61"] + span, .leaflet-panel-layers-title [id="62"] + span, .leaflet-panel-layers-title [id="63"] + span, .leaflet-panel-layers-title [id="64"] + span {
   color:#f700ff
   ;
-}
+} */
